@@ -1,0 +1,7 @@
+{
+  "name": "RRNET Manager",
+  "description": "A comprehensive ISP management dashboard for RRNET to manage clients, PPPoE plans, billing, and automated WhatsApp notifications.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

@@ -1,0 +1,24 @@
+
+version: '3.8'
+
+services:
+  rrnet-app:
+    image: nginx:alpine
+    container_name: rrnet_manager
+    ports:
+      - "8080:80"
+    volumes:
+      # Mapea la carpeta actual al servidor web de Nginx
+      - .:/usr/share/nginx/html:ro
+      # Opcional: Si quieres configurar un proxy inverso para evitar CORS
+      # - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# Nota para Mikrotik:
+# Si el navegador sigue bloqueando la conexión, puedes usar un contenedor 
+# de "CORS Proxy" o configurar Nginx para que haga el forwarding.
